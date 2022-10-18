@@ -5,18 +5,26 @@
 # Make changes and then just run this file.
 
 import os
-initializer = "git init"
-add ="git add ."
-msg = str(input("Commit message?\n"))
-cmt = f"git commit -m {msg}"
-os.system(f"{initializer}")
-os.system(f"{add}")
-os.system(f"{cmt}")
-yN = input("want to push?")
+dirlis = os.listdir()
+if ".git" not in dirlis:
+    initializer = "git init"
+    os.system(f"{initializer}")
+k = 1
 
-if yN =='Y' or yN =='y':
-    repolink = str(input("What link?\n"))
-    os.system("git remote add newo {}".format(repolink))
-    os.system("git push -f newo main")
-else:
-    pass
+while True:
+    os.system("git add .")
+    msg = input("Commit message?\n")
+    os.system(f"git commit -m {msg}")
+    yN = input("want to push (Y/N)?")
+    yN.capitalize();
+    if yN =='Y':
+        if k==1:
+            repolink = str(input("What link?\n"))
+            os.system("git remote add newo {}".format(repolink)) 
+            k=k+1
+        if k == 2:
+            os.system("git push -f newo main")
+        else:
+            os.system("git push")
+    else:
+        pass
