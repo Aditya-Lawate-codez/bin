@@ -7,13 +7,13 @@
 import os
 dirlis = os.listdir()
 if ".git" not in dirlis:
-    initializer = "git init"
-    os.system(f"{initializer}")
+    os.system("git init")
 k = 1
 
 while True:
+    print("Commit message?\n")
+    msg = input()
     os.system("git add .")
-    msg = input("Commit message?\n")
     os.system(f"git commit -m {msg}")
     yN = input("want to push (Y/N)?")
     yN.capitalize();
@@ -25,6 +25,6 @@ while True:
         if k == 2:
             os.system("git push -f newo main")
         else:
-            os.system("git push")
+            os.system("git push -f")
     else:
         pass
